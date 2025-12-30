@@ -3,14 +3,14 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "jax-finufft"
+name = "fftax"
 version = "0.1.0"
-description = "Pure JAX implementation of FINUFFT (Non-Uniform FFT)"
+description = "Pure JAX implementation of Non-Uniform FFT"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.9"
 authors = [
-    {name = "JAX-FINUFFT Authors"}
+    {name = "fftax Authors"}
 ]
 keywords = ["jax", "fft", "nufft", "non-uniform", "fourier-transform", "autodiff"]
 classifiers = [
@@ -38,13 +38,13 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/example/jax-finufft"
-Documentation = "https://github.com/example/jax-finufft"
-Repository = "https://github.com/example/jax-finufft"
+Homepage = "https://github.com/example/fftax"
+Documentation = "https://github.com/example/fftax"
+Repository = "https://github.com/example/fftax"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["jax_finufft*"]
+include = ["fftax*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

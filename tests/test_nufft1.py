@@ -18,8 +18,8 @@ import pytest
 from numpy.testing import assert_allclose
 
 # Import NUFFT functions when implemented
-# from jax_finufft import nufft1d1, nufft2d1, nufft3d1
-# from jax_finufft.transforms.nufft1 import nufft1d1, nufft2d1, nufft3d1
+# from fftax import nufft1d1, nufft2d1, nufft3d1
+# from fftax.transforms.nufft1 import nufft1d1, nufft2d1, nufft3d1
 from tests.conftest import (
     PRECISION_LEVELS,
     dft_nufft1d1,

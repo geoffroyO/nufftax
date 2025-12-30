@@ -11,11 +11,11 @@ import pytest
 from numpy.testing import assert_allclose
 
 # Import spreading functions when implemented
-# from jax_finufft.core.spread import (
+# from fftax.core.spread import (
 #     spread_1d, spread_2d, spread_3d,
 #     interp_1d, interp_2d, interp_3d,
 # )
-from jax_finufft.core.kernel import compute_kernel_params
+from fftax.core.kernel import compute_kernel_params
 
 # ============================================================================
 # Fixtures
