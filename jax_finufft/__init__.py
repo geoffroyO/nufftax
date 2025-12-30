@@ -1,0 +1,46 @@
+"""
+JAX-FINUFFT: Pure JAX implementation of Non-Uniform FFT
+
+This package provides NUFFT (Non-Uniform Fast Fourier Transform) operations
+that are fully compatible with JAX transformations including:
+- jit: JIT compilation
+- grad/vjp: Reverse-mode automatic differentiation
+- jvp: Forward-mode automatic differentiation
+- vmap: Automatic vectorization
+
+Main functions:
+- nufft1d1, nufft1d2: 1D NUFFT Type 1 and Type 2
+- nufft2d1, nufft2d2: 2D NUFFT Type 1 and Type 2
+- nufft3d1, nufft3d2: 3D NUFFT Type 1 and Type 2
+
+Example:
+    import jax.numpy as jnp
+    from jax_finufft import nufft1d1, nufft1d2
+
+    # Type 1: Nonuniform points to uniform Fourier modes
+    x = jnp.array([0.1, 0.5, 1.0, 2.0])  # Nonuniform points
+    c = jnp.array([1+1j, 2-1j, 0.5, 1j])  # Complex strengths
+    f = nufft1d1(x, c, n_modes=64, eps=1e-6)
+
+    # Type 2: Uniform Fourier modes to nonuniform points
+    c2 = nufft1d2(x, f, eps=1e-6)
+"""
+
+__version__ = "0.1.0"
+
+# Type 1 transforms (Nonuniform to Uniform)
+from .transforms.nufft1 import nufft1d1, nufft2d1, nufft3d1
+
+# Type 2 transforms (Uniform to Nonuniform)
+from .transforms.nufft2 import nufft1d2, nufft2d2, nufft3d2
+
+__all__ = [
+    # Type 1 transforms
+    "nufft1d1",
+    "nufft2d1",
+    "nufft3d1",
+    # Type 2 transforms
+    "nufft1d2",
+    "nufft2d2",
+    "nufft3d2",
+]
