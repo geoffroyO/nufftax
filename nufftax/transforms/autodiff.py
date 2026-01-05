@@ -95,9 +95,7 @@ def _nufft1d1_fwd(
     return f, (x, c)
 
 
-def _nufft1d1_bwd(
-    n_modes: int, eps: float, isign: int, res: tuple, g: Array
-) -> tuple[Array | None, Array | None]:
+def _nufft1d1_bwd(n_modes: int, eps: float, isign: int, res: tuple, g: Array) -> tuple[Array | None, Array | None]:
     """
     Backward pass for nufft1d1 VJP.
 
@@ -180,9 +178,7 @@ def _nufft1d2_fwd(
     return c, (x, f)
 
 
-def _nufft1d2_bwd(
-    eps: float, isign: int, res: tuple, g: Array
-) -> tuple[Array | None, Array | None]:
+def _nufft1d2_bwd(eps: float, isign: int, res: tuple, g: Array) -> tuple[Array | None, Array | None]:
     """
     Backward pass for nufft1d2 VJP.
 
@@ -332,9 +328,7 @@ def _nufft1d2_jvp(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
 
 
 @jax.custom_jvp
-def nufft2d1_jvp(
-    x: Array, y: Array, c: Array, n_modes: tuple[int, int], eps: float = 1e-6, isign: int = 1
-) -> Array:
+def nufft2d1_jvp(x: Array, y: Array, c: Array, n_modes: tuple[int, int], eps: float = 1e-6, isign: int = 1) -> Array:
     """
     2D Type 1 NUFFT with forward-mode AD support.
 
@@ -358,9 +352,7 @@ def _nufft2d1_jvp(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
     # Tangent output: df = df/dc * dc + df/dx * dx + df/dy * dy
 
     # Contribution from dc: standard Type 1 transform of dc
-    df_from_c = (
-        _nufft2d1_impl(x, y, dc, n_modes, eps, isign) if dc is not None else jnp.zeros_like(f)
-    )
+    df_from_c = _nufft2d1_impl(x, y, dc, n_modes, eps, isign) if dc is not None else jnp.zeros_like(f)
 
     # Contribution from dx:
     # f[k1, k2] = sum_j c[j] * exp(i * isign * (k1*x[j] + k2*y[j]))
@@ -483,9 +475,7 @@ def _nufft3d1_jvp(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
     # Tangent output: df = df/dc * dc + df/dx * dx + df/dy * dy + df/dz * dz
 
     # Contribution from dc
-    df_from_c = (
-        _nufft3d1_impl(x, y, z, dc, n_modes, eps, isign) if dc is not None else jnp.zeros_like(f)
-    )
+    df_from_c = _nufft3d1_impl(x, y, z, dc, n_modes, eps, isign) if dc is not None else jnp.zeros_like(f)
 
     # Contribution from dx: k1 on axis 2
     if dx is not None:
@@ -522,9 +512,7 @@ def _nufft3d1_jvp(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
 
 
 @jax.custom_jvp
-def nufft3d2_jvp(
-    x: Array, y: Array, z: Array, f: Array, eps: float = 1e-6, isign: int = -1
-) -> Array:
+def nufft3d2_jvp(x: Array, y: Array, z: Array, f: Array, eps: float = 1e-6, isign: int = -1) -> Array:
     """
     3D Type 2 NUFFT with forward-mode AD support.
 
@@ -587,9 +575,7 @@ def _nufft3d2_jvp(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
 # =============================================================================
 
 
-def _nufft2d1_impl(
-    x: Array, y: Array, c: Array, n_modes: tuple[int, int], eps: float = 1e-6, isign: int = 1
-) -> Array:
+def _nufft2d1_impl(x: Array, y: Array, c: Array, n_modes: tuple[int, int], eps: float = 1e-6, isign: int = 1) -> Array:
     """Implementation of 2D Type 1 NUFFT."""
     from .nufft1 import nufft2d1 as nufft2d1_fast
 
@@ -604,9 +590,7 @@ def _nufft2d2_impl(x: Array, y: Array, f: Array, eps: float = 1e-6, isign: int =
 
 
 @jax.custom_vjp
-def nufft2d1(
-    x: Array, y: Array, c: Array, n_modes: tuple[int, int], eps: float = 1e-6, isign: int = 1
-) -> Array:
+def nufft2d1(x: Array, y: Array, c: Array, n_modes: tuple[int, int], eps: float = 1e-6, isign: int = 1) -> Array:
     """
     2D Type 1 NUFFT with custom gradients.
 
@@ -732,9 +716,7 @@ def _nufft3d1_impl(
     return nufft3d1_fast(x, y, z, c, n_modes, eps, isign)
 
 
-def _nufft3d2_impl(
-    x: Array, y: Array, z: Array, f: Array, eps: float = 1e-6, isign: int = -1
-) -> Array:
+def _nufft3d2_impl(x: Array, y: Array, z: Array, f: Array, eps: float = 1e-6, isign: int = -1) -> Array:
     """Implementation of 3D Type 2 NUFFT."""
     from .nufft2 import nufft3d2 as nufft3d2_fast
 
@@ -1258,9 +1240,7 @@ def _nufft3d3_bwd(
     x_ext = float((jnp.max(x) - jnp.min(x)) / 2)
     y_ext = float((jnp.max(y) - jnp.min(y)) / 2)
     z_ext = float((jnp.max(z) - jnp.min(z)) / 2)
-    n_modes_rev = compute_type3_grid_sizes_3d(
-        s_ext, t_ext, u_ext, x_ext, y_ext, z_ext, eps, upsampfac
-    )
+    n_modes_rev = compute_type3_grid_sizes_3d(s_ext, t_ext, u_ext, x_ext, y_ext, z_ext, eps, upsampfac)
 
     # Gradient w.r.t. c: reverse Type 3
     dc = _nufft3d3_impl(s, t, u, g_conj, x, y, z, n_modes_rev, eps, -isign, upsampfac)
@@ -1349,11 +1329,7 @@ def _nufft1d3_jvp_rule(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
     # Tangent output: df = ∂f/∂c * dc + ∂f/∂x * dx + ∂f/∂s * ds
 
     # Contribution from dc: Type 3 of dc
-    df_from_c = (
-        _nufft1d3_impl(x, dc, s, n_modes, eps, isign, upsampfac)
-        if dc is not None
-        else jnp.zeros_like(f)
-    )
+    df_from_c = _nufft1d3_impl(x, dc, s, n_modes, eps, isign, upsampfac) if dc is not None else jnp.zeros_like(f)
 
     # Contribution from dx:
     # f[k] = sum_j c[j] * exp(isign * i * s[k] * x[j])
@@ -1411,11 +1387,7 @@ def _nufft2d3_jvp_rule(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
     f = _nufft2d3_impl(x, y, c, s, t, n_modes, eps, isign, upsampfac)
 
     # Contribution from dc
-    df_from_c = (
-        _nufft2d3_impl(x, y, dc, s, t, n_modes, eps, isign, upsampfac)
-        if dc is not None
-        else jnp.zeros_like(f)
-    )
+    df_from_c = _nufft2d3_impl(x, y, dc, s, t, n_modes, eps, isign, upsampfac) if dc is not None else jnp.zeros_like(f)
 
     # Contribution from dx: s-weighted
     if dx is not None:
@@ -1484,34 +1456,26 @@ def _nufft3d3_jvp_rule(primals: tuple, tangents: tuple) -> tuple[Array, Array]:
 
     # Contribution from dc
     df_from_c = (
-        _nufft3d3_impl(x, y, z, dc, s, t, u, n_modes, eps, isign, upsampfac)
-        if dc is not None
-        else jnp.zeros_like(f)
+        _nufft3d3_impl(x, y, z, dc, s, t, u, n_modes, eps, isign, upsampfac) if dc is not None else jnp.zeros_like(f)
     )
 
     # Contribution from dx: s-weighted
     if dx is not None:
-        weighted_transform = _nufft3d3_impl(
-            x, y, z, c * dx, s, t, u, n_modes, eps, isign, upsampfac
-        )
+        weighted_transform = _nufft3d3_impl(x, y, z, c * dx, s, t, u, n_modes, eps, isign, upsampfac)
         df_from_x = 1j * isign * s * weighted_transform
     else:
         df_from_x = jnp.zeros_like(f)
 
     # Contribution from dy: t-weighted
     if dy is not None:
-        weighted_transform = _nufft3d3_impl(
-            x, y, z, c * dy, s, t, u, n_modes, eps, isign, upsampfac
-        )
+        weighted_transform = _nufft3d3_impl(x, y, z, c * dy, s, t, u, n_modes, eps, isign, upsampfac)
         df_from_y = 1j * isign * t * weighted_transform
     else:
         df_from_y = jnp.zeros_like(f)
 
     # Contribution from dz: u-weighted
     if dz is not None:
-        weighted_transform = _nufft3d3_impl(
-            x, y, z, c * dz, s, t, u, n_modes, eps, isign, upsampfac
-        )
+        weighted_transform = _nufft3d3_impl(x, y, z, c * dz, s, t, u, n_modes, eps, isign, upsampfac)
         df_from_z = 1j * isign * u * weighted_transform
     else:
         df_from_z = jnp.zeros_like(f)
