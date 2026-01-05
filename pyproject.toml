@@ -34,10 +34,22 @@ dev = [
     "numpy>=1.20",
     "ruff>=0.4.0",
 ]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-book-theme>=1.0",
+    "sphinx-autobuild>=2024.0",
+    "myst-nb>=1.0",
+    "sphinx-autodoc-typehints>=1.24",
+    "sphinx-design>=0.5",
+    "sphinx-copybutton>=0.5",
+    "sphinx-togglebutton>=0.3",
+    "matplotlib>=3.5",
+    "scipy>=1.9",
+]
 
 [project.urls]
 Homepage = "https://github.com/geoffroyO/nufftax"
-Documentation = "https://github.com/geoffroyO/nufftax"
+Documentation = "https://nufftax.readthedocs.io"
 Repository = "https://github.com/geoffroyO/nufftax"
 
 [tool.setuptools.packages.find]
