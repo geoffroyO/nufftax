@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/geoffroyO/nufftax/actions/workflows/ci.yml"><img src="https://github.com/geoffroyO/nufftax/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/GragasLab/nufftax/actions/workflows/ci.yml"><img src="https://github.com/GragasLab/nufftax/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://nufftax.readthedocs.io"><img src="https://img.shields.io/badge/docs-online-blue.svg" alt="Documentation"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.12+-blue.svg" alt="Python 3.12+"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
@@ -88,9 +88,9 @@ If you use nufftax in your research, please cite:
 
 ```bibtex
 @software{nufftax,
-  author = {Oudoumanessah, Geoffroy and Iollo, Jacopo},
+  author = {Gragas and Oudoumanessah, Geoffroy and Iollo, Jacopo},
   title = {nufftax: Pure JAX implementation of the Non-Uniform Fast Fourier Transform},
-  url = {https://github.com/geoffroyO/nufftax},
+  url = {https://github.com/GragasLab/nufftax},
   year = {2026}
 }
 

@@ -1,8 +1,8 @@
 # Configuration file for the Sphinx documentation builder.
 
 project = "nufftax"
-copyright = "2026, Geoffroy Oudoumanessah, Jacopo Iollo"
-author = "Geoffroy Oudoumanessah, Jacopo Iollo"
+copyright = "2026, Gragas, Geoffroy Oudoumanessah, Jacopo Iollo"
+author = "Gragas, Geoffroy Oudoumanessah, Jacopo Iollo"
 release = "0.3.0"
 
 # -- General configuration ---------------------------------------------------
@@ -37,7 +37,7 @@ html_static_path = ["_static"]
 html_logo = "_static/logo.png"
 
 html_theme_options = {
-    "repository_url": "https://github.com/geoffroyO/nufftax",
+    "repository_url": "https://github.com/GragasLab/nufftax",
     "use_repository_button": True,
     "use_issues_button": True,
     "use_edit_page_button": True,
@@ -54,7 +54,7 @@ html_title = "nufftax"
 
 html_context = {
     "display_github": True,
-    "github_user": "geoffroyO",
+    "github_user": "GragasLab",
     "github_repo": "nufftax",
     "github_version": "main",
     "conf_py_path": "/docs/",

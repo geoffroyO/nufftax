@@ -3,8 +3,8 @@ nufftax
 
 **A pure JAX implementation of the Non-Uniform Fast Fourier Transform.**
 
-.. image:: https://github.com/geoffroyO/nufftax/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/geoffroyO/nufftax/actions/workflows/ci.yml
+.. image:: https://github.com/GragasLab/nufftax/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/GragasLab/nufftax/actions/workflows/ci.yml
 
 .. image:: https://img.shields.io/badge/docs-online-blue.svg
    :target: https://nufftax.readthedocs.io
@@ -126,7 +126,7 @@ Or from source:
 
 .. code-block:: bash
 
-   git clone https://github.com/geoffroyO/nufftax.git
+   git clone https://github.com/GragasLab/nufftax.git
    cd nufftax && uv pip install -e .
 
 Documentation

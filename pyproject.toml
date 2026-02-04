@@ -10,7 +10,8 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12"
 authors = [
-    {name = "Geoffroy Oudoumanessah", email = "geoffroy.oudoumanesah@gmail.com"},
+    {name = "Gragas", email = "contact@gragas.ai"},
+    {name = "Geoffroy Oudoumanessah"},
     {name = "Jacopo Iollo"}
 ]
 keywords = ["jax", "fft", "nufft", "non-uniform", "fourier-transform", "autodiff"]
@@ -50,9 +51,9 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/geoffroyO/nufftax"
+Homepage = "https://github.com/GragasLab/nufftax"
 Documentation = "https://nufftax.readthedocs.io"
-Repository = "https://github.com/geoffroyO/nufftax"
+Repository = "https://github.com/GragasLab/nufftax"
 
 [tool.setuptools.packages.find]
 where = ["."]
